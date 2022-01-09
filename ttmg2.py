@@ -202,8 +202,9 @@ def argoTunnel():
     # shutil.unpack_archive("cloudflared.tgz")
     _download("https://download1324.mediafire.com/bm1vhwr6rpug/s55laf08cqdroog/cloudflared", "cloudflared")
     subprocess.run(["chmod", "755", "cloudflared"])
+    subprocess.run(["mv", "cloudflared", "/usr/bin/"])
     cfd_proc = subprocess.Popen(
-        ["./cloudflared", "tunnel", "--url", "ssh://localhost:22", "--logfile", "cloudflared.log", "--metrics", "localhost:49589"],
+        ["cloudflared", "tunnel", "--url", "ssh://localhost:22", "--logfile", "cloudflared.log", "--metrics", "localhost:49589"],
         stdout = subprocess.PIPE,
         universal_newlines = True
         )
